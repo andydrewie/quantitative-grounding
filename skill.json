@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "quantitative-grounding",
+  "id": "QG-01",
+  "version": "1.0.2",
+  "status": "stable",
+  "description": "Adds the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision.",
+  "license": "MIT",
+  "author": {
+    "name": "Andrew Fai",
+    "github": "andydrewie"
+  },
+  "entrypoints": {
+    "normative_spec": "SKILL.md",
+    "system_prompt": "SYSTEM_PROMPT.txt",
+    "agent_instructions": "AGENTS.md",
+    "evaluations": "EVALS.md"
+  },
+  "activation": {
+    "default": "substantive-analysis",
+    "on_demand": "Run QG-01 on this question.",
+    "modes": ["Lite", "Standard", "Deep"]
+  },
+  "principles": [
+    "relevant",
+    "decision-useful",
+    "epistemically-defensible"
+  ],
+  "optional_output_schema": "schemas/quantitative-frame.schema.json"
+}

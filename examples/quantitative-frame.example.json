@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "metric": "Estimated five-year adoption probability",
+      "value_or_range": "35-55%",
+      "meaning": "Plausible range under the stated adoption and cost assumptions",
+      "basis_or_confidence": "Informed estimate; low-to-moderate confidence",
+      "as_of": "2026-08",
+      "epistemic_status": "informed_estimate"
+    },
+    {
+      "metric": "Most sensitive assumption",
+      "value_or_range": "Cost decline of 30-50%",
+      "meaning": "Adoption falls materially below the central case if this decline does not occur",
+      "basis_or_confidence": "Scenario assumption",
+      "as_of": "2026-08",
+      "epistemic_status": "scenario_assumption"
+    }
+  ]
+}
