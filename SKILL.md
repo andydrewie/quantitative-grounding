@@ -1,14 +1,6 @@
 ---
 name: quantitative-grounding
-id: QG-01
-version: 1.0.2
-description: Adds the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision.
-activation: default-for-substantive-analysis
-aliases:
-  - quantitative grounding
-  - quantify this
-  - compared with what
-  - QG-01
+description: "Add the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision. Use by default for substantive analytical requests involving rankings, companies, markets, probability, forecasting, economics, technical performance, social prevalence, strategy, resources, capacity, or consequential empirical claims; also use when the user invokes QG-01, quantitative grounding, quantify this, or compared with what. Use lightly or suppress for creative writing, stylistic rewriting, emotional support, casual conversation, non-empirical philosophy, or early ideation unless the user explicitly asks for quantification."
 ---
 
 # QG-01 - Quantitative Grounding

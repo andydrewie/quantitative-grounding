@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased - Codex metadata compatibility
+
+- Normalized `SKILL.md` frontmatter to the current Codex `name` and `description` schema.
+- Preserved the QG-01 identifier, version, aliases, and activation behavior in the manifest and skill instructions.
+- Added Codex UI metadata in `agents/openai.yaml`.
+- Updated repository validation to enforce the compatible frontmatter shape.
+
 ## 1.0.2 - Canonical release
 
 - Declared this package the single source of truth.

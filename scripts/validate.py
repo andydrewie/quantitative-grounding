@@ -14,6 +14,7 @@ VERSION = "1.0.2"
 REQUIRED_FILES = [
     "README.md",
     "SKILL.md",
+    "agents/openai.yaml",
     "SYSTEM_PROMPT.txt",
     "AGENTS.md",
     "skill.json",
@@ -60,15 +61,27 @@ def validate_text_files() -> None:
             fail(f"mojibake marker {marker!r} found in {path.relative_to(ROOT)}")
 
 
-def validate_version_consistency() -> None:
+def validate_identity_consistency() -> None:
     skill = read_utf8(ROOT / "SKILL.md")
     manifest = json.loads(read_utf8(ROOT / "skill.json"))
     if manifest.get("version") != VERSION:
         fail("skill.json version does not match validator version")
-    if not re.search(rf"^version:\s*{re.escape(VERSION)}\s*$", skill, flags=re.MULTILINE):
-        fail("SKILL.md frontmatter version does not match validator version")
-    if not re.search(r"^id:\s*QG-01\s*$", skill, flags=re.MULTILINE):
-        fail("SKILL.md must declare id: QG-01")
+    if manifest.get("id") != "QG-01":
+        fail("skill.json must declare id QG-01")
+
+    match = re.match(r"\A---\r?\n(.*?)\r?\n---(?:\r?\n|\Z)", skill, flags=re.DOTALL)
+    if not match:
+        fail("SKILL.md must begin with YAML frontmatter")
+    frontmatter = match.group(1)
+    if not re.search(r"^name:\s*quantitative-grounding\s*$", frontmatter, flags=re.MULTILINE):
+        fail("SKILL.md frontmatter must declare name: quantitative-grounding")
+    if not re.search(r"^description:\s*.+$", frontmatter, flags=re.MULTILINE):
+        fail("SKILL.md frontmatter must declare a description")
+    for unsupported in ("id", "version", "activation", "aliases"):
+        if re.search(rf"^{unsupported}:\s*", frontmatter, flags=re.MULTILINE):
+            fail(f"SKILL.md frontmatter must not declare unsupported key: {unsupported}")
+    if not re.search(r"^# QG-01 - Quantitative Grounding\s*$", skill, flags=re.MULTILINE):
+        fail("SKILL.md must retain the canonical QG-01 heading")
 
 
 def validate_json() -> None:
@@ -92,7 +105,7 @@ def print_manifest() -> None:
 def main() -> None:
     validate_required_files()
     validate_text_files()
-    validate_version_consistency()
+    validate_identity_consistency()
     validate_json()
     print_manifest()
 

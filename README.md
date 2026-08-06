@@ -53,6 +53,7 @@ When reliable quantification is unavailable, remaining qualitative is the correc
 | File | Purpose |
 |---|---|
 | [`SKILL.md`](SKILL.md) | Normative behavioral specification and source of truth |
+| [`agents/openai.yaml`](agents/openai.yaml) | Codex UI metadata and default invocation prompt |
 | [`SYSTEM_PROMPT.txt`](SYSTEM_PROMPT.txt) | Compact deployment prompt |
 | [`AGENTS.md`](AGENTS.md) | Agent-facing integration and precedence rules |
 | [`skill.json`](skill.json) | Machine-readable manifest |
@@ -85,6 +86,12 @@ Run locally:
 
 ```bash
 python scripts/validate.py
+```
+
+Check Codex skill-structure compatibility with the installed official validator:
+
+```bash
+python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py .
 ```
 
 The GitHub Actions workflow runs the same validation on every push and pull request.
