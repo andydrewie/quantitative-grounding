@@ -38,6 +38,17 @@ QG-01/Standard
 QG-01/Deep
 ```
 
+### Codex plugin
+
+Install the Codex Skills marketplace, then install this immutable, validated package:
+
+```bash
+codex plugin marketplace add https://github.com/andydrewie/codex-skills
+codex plugin add quantitative-grounding@andydrewie-codex-skills
+```
+
+The root `plugin.json` follows Agent Plugins 1.0. The generated `.codex-plugin/plugin.json` keeps Codex 0.145 compatible while the root manifest is used by Codex 0.146 and newer.
+
 ## Governing rule
 
 A number should be included only when it is:
@@ -54,6 +65,9 @@ When reliable quantification is unavailable, remaining qualitative is the correc
 |---|---|
 | [`SKILL.md`](SKILL.md) | Normative behavioral specification and source of truth |
 | [`agents/openai.yaml`](agents/openai.yaml) | Codex UI metadata and default invocation prompt |
+| [`plugin.json`](plugin.json) | Portable Agent Plugins 1.0 manifest |
+| [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Generated Codex 0.145 compatibility manifest |
+| [`skills/quantitative-grounding/`](skills/quantitative-grounding/) | Generated fixed-location plugin skill mirror |
 | [`SYSTEM_PROMPT.txt`](SYSTEM_PROMPT.txt) | Compact deployment prompt |
 | [`AGENTS.md`](AGENTS.md) | Agent-facing integration and precedence rules |
 | [`skill.json`](skill.json) | Machine-readable manifest |
@@ -91,16 +105,16 @@ python scripts/validate.py
 Check Codex skill-structure compatibility with the installed official validator:
 
 ```bash
-python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py .
+python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/quantitative-grounding
 ```
 
 The GitHub Actions workflow runs the same validation on every push and pull request.
 
 ## Version
 
-Canonical skill version: **1.0.2**
+Canonical skill version: **1.0.3**
 
-The original UTF-8 files were functionally valid. This release uses ASCII-safe punctuation to reduce mojibake risk in mobile and plain-text previews.
+This packaging-only release adds portable Agent Plugins discovery and the transitional Codex compatibility bridge without changing QG-01 behavior.
 
 ## Author
 

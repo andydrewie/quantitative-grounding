@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "quantitative-grounding",
   "id": "QG-01",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "status": "stable",
   "description": "Adds the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision.",
   "license": "MIT",
@@ -12,6 +12,7 @@
   },
   "entrypoints": {
     "normative_spec": "SKILL.md",
+    "agent_plugin_mirror": "skills/quantitative-grounding/SKILL.md",
     "system_prompt": "SYSTEM_PROMPT.txt",
     "agent_instructions": "AGENTS.md",
     "evaluations": "EVALS.md"
