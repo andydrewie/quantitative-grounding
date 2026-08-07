@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0 - Explicit Codex invocation
+
+- Changed the installed Codex skill from implicit/default activation to explicit `$quantitative-grounding` invocation.
+- Added `policy.allow_implicit_invocation: false` to the root and plugin-package Codex metadata.
+- Preserved `SYSTEM_PROMPT.txt` as a separate operator-controlled deployment path for agents intentionally configured with persistent QG-01 behavior.
+- Updated the normative skill, agent contract, README, canonical summary, examples, and evaluations to distinguish the two deployment modes.
+- Updated machine-readable activation metadata and validation so packaging cannot silently restore implicit invocation.
+- Bumped the major version because changing when an installed skill runs is an incompatible user-facing activation-contract change.
+
 ## 1.0.3 - Agent Plugins packaging
 
 - Added the Agent Plugins 1.0 root manifest and fixed `skills/quantitative-grounding/` discovery layout.

@@ -4,6 +4,10 @@
 
 > Quantify when numbers reveal reality. Do not quantify when numbers merely imitate certainty.
 
+> **Codex activation: explicit only.** Installing the skill does not make it run automatically. Invoke it intentionally with `$quantitative-grounding`, for example: `Use $quantitative-grounding to compare these options.`
+
+The compact system/developer prompt remains available as a **separate opt-in deployment mode**. An operator who copies [`SYSTEM_PROMPT.txt`](SYSTEM_PROMPT.txt) into an agent's persistent instructions is deliberately choosing default QG-01 behavior for that configured agent; this does not change the installed Codex skill's explicit-only policy.
+
 ## Why this exists
 
 AI answers can be qualitatively correct yet quantitatively ungrounded. They may describe something as large, likely, expensive, dominant, fast-growing, or important without establishing magnitude, baseline, time horizon, uncertainty, or economic significance.
@@ -12,30 +16,28 @@ QG-01 turns the recurring question **"compared with what?"** into an explicit re
 
 ## Quick start
 
-### System or developer prompt
-
-Copy the contents of [`SYSTEM_PROMPT.txt`](SYSTEM_PROMPT.txt) into the persistent instruction layer of your model or agent.
-
 ### Agent skill
 
-Provide [`SKILL.md`](SKILL.md) to the agent as a behavioral skill and activate it with:
+Provide [`SKILL.md`](SKILL.md) to the agent as a behavioral skill and invoke it explicitly:
 
 ```text
-Activate QG-01 by default for substantive analytical questions.
+Use $quantitative-grounding to add relevant baselines and uncertainty to this analysis.
 ```
 
-For a single request:
+Depth modes remain explicit:
 
 ```text
-Run QG-01 on this question.
+Use $quantitative-grounding in QG-01/Lite mode to assess whether this market is large enough to matter.
+Use $quantitative-grounding in QG-01/Standard mode to rank these companies using stated criteria.
+Use $quantitative-grounding in QG-01/Deep mode to model this forecast with scenarios and sensitivity analysis.
 ```
 
-Depth modes:
+### System or developer prompt (separate opt-in)
+
+Copy [`SYSTEM_PROMPT.txt`](SYSTEM_PROMPT.txt) into a model or agent's persistent instruction layer only when you intentionally want QG-01 to apply by default in that configured environment. A suitable operator instruction is:
 
 ```text
-QG-01/Lite
-QG-01/Standard
-QG-01/Deep
+Activate QG-01 by default for substantive analytical questions. Quantify only when relevant, decision-useful, and epistemically defensible.
 ```
 
 ### Codex plugin
@@ -46,6 +48,8 @@ Install the Codex Skills marketplace, then install this immutable, validated pac
 codex plugin marketplace add https://github.com/andydrewie/codex-skills
 codex plugin add quantitative-grounding@andydrewie-codex-skills
 ```
+
+Then invoke it explicitly in a request with `$quantitative-grounding`.
 
 The root `plugin.json` follows Agent Plugins 1.0. The generated `.codex-plugin/plugin.json` keeps Codex 0.145 compatible while the root manifest is used by Codex 0.146 and newer.
 
@@ -64,7 +68,7 @@ When reliable quantification is unavailable, remaining qualitative is the correc
 | File | Purpose |
 |---|---|
 | [`SKILL.md`](SKILL.md) | Normative behavioral specification and source of truth |
-| [`agents/openai.yaml`](agents/openai.yaml) | Codex UI metadata and default invocation prompt |
+| [`agents/openai.yaml`](agents/openai.yaml) | Codex UI metadata, explicit invocation prompt, and no-implicit-invocation policy |
 | [`plugin.json`](plugin.json) | Portable Agent Plugins 1.0 manifest |
 | [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Generated Codex 0.145 compatibility manifest |
 | [`skills/quantitative-grounding/`](skills/quantitative-grounding/) | Generated fixed-location plugin skill mirror |
@@ -112,9 +116,9 @@ The GitHub Actions workflow runs the same validation on every push and pull requ
 
 ## Version
 
-Canonical skill version: **1.0.3**
+Canonical skill version: **2.0.0**
 
-This packaging-only release adds portable Agent Plugins discovery and the transitional Codex compatibility bridge without changing QG-01 behavior.
+This major release makes the installed Codex skill explicit-use only. The major version reflects the incompatible activation-contract change from implicit/default skill invocation; the separate opt-in system/developer prompt deployment remains available.
 
 ## Author
 
