@@ -1,6 +1,6 @@
 ---
 name: quantitative-grounding
-description: "Add the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision. Use by default for substantive analytical requests involving rankings, companies, markets, probability, forecasting, economics, technical performance, social prevalence, strategy, resources, capacity, or consequential empirical claims; also use when the user invokes QG-01, quantitative grounding, quantify this, or compared with what. Use lightly or suppress for creative writing, stylistic rewriting, emotional support, casual conversation, non-empirical philosophy, or early ideation unless the user explicitly asks for quantification."
+description: "Explicit-invocation only. Use when the user calls $quantitative-grounding to add the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision. After invocation, apply the full protocol to substantive analytical requests involving rankings, companies, markets, probability, forecasting, economics, technical performance, social prevalence, strategy, resources, capacity, or consequential empirical claims; use lightly or remain qualitative when quantification would not help."
 ---
 
 # QG-01 - Quantitative Grounding
@@ -32,9 +32,11 @@ Use quantitative grounding when it is:
 
 Never manufacture numbers merely to make an answer appear rigorous.
 
-## 3. Trigger Conditions
+## 3. Scope After Explicit Invocation
 
-### Activate by default when the request involves
+Do not activate this Codex skill implicitly. The user must invoke `$quantitative-grounding` explicitly. After invocation, apply the protocol proportionately.
+
+### Apply fully when the request involves
 
 - rankings, comparisons, or superlative requests;
 - companies, markets, industries, business models, or investment;
@@ -46,7 +48,7 @@ Never manufacture numbers merely to make an answer appear rigorous.
 - strategic or personal decisions where expected benefit, downside, reversibility, or opportunity cost matters;
 - claims using words such as large, small, likely, rare, expensive, fast, dominant, successful, efficient, growing, or important.
 
-### Suppress or use lightly when the request is primarily
+### Use lightly or remain qualitative when the request is primarily
 
 - creative writing;
 - stylistic rewriting;
@@ -55,7 +57,7 @@ Never manufacture numbers merely to make an answer appear rigorous.
 - open-ended philosophical exploration with no empirical claim;
 - early ideation where numbers would prematurely narrow the search space.
 
-Quantify these only when the user asks or when an empirical claim materially affects the answer.
+Even after explicit invocation, quantify these only when an empirical claim materially affects the answer. Invoking the skill never requires numerical theater.
 
 ## 4. Quantification Decision Gate
 
@@ -244,21 +246,29 @@ Preferred behavior:
 
 Remaining qualitative is better than manufacturing certainty.
 
-## 15. Activation Syntax
+## 15. Invocation and Deployment Syntax
 
-### Persistent activation
+### Codex skill invocation
+
+Invoke the installed Codex skill explicitly:
+
+> Use $quantitative-grounding to analyze this question.
+
+Installation alone must not make the skill run automatically.
+
+### Persistent system or developer prompt deployment
+
+As a separate operator-controlled opt-in, copy `SYSTEM_PROMPT.txt` into an agent's system or developer instructions. That deployment makes the behavior persistent for that configured agent and may apply it by default to substantive analytical questions. It does not change the Codex skill's explicit-only invocation policy.
+
+Suggested persistent instruction:
 
 > Activate QG-01 by default for substantive analytical questions. Quantify only when relevant, decision-useful, and epistemically defensible.
 
-### On-demand activation
-
-> Run QG-01 on this question.
-
 ### Depth modes
 
-- **QG-01/Lite:** one to three quantitative anchors; minimal added length.
-- **QG-01/Standard:** three to five anchors, baselines, and uncertainty.
-- **QG-01/Deep:** scenarios, sensitivity analysis, assumptions, and a Quantitative Frame.
+- **QG-01/Lite:** `Use $quantitative-grounding in QG-01/Lite mode ...` for one to three quantitative anchors and minimal added length.
+- **QG-01/Standard:** `Use $quantitative-grounding in QG-01/Standard mode ...` for three to five anchors, baselines, and uncertainty.
+- **QG-01/Deep:** `Use $quantitative-grounding in QG-01/Deep mode ...` for scenarios, sensitivity analysis, assumptions, and a Quantitative Frame.
 
 ## 16. Interoperability with a Precision-First Skill
 

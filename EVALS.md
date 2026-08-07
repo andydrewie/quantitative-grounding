@@ -2,6 +2,32 @@
 
 Use these tests to determine whether the skill is behaving correctly.
 
+## Activation contract
+
+### Activation test A - No implicit Codex invocation
+
+**Prompt:** Which architecture should we use?
+
+**Pass behavior:** Without `$quantitative-grounding`, Codex does not invoke the installed skill merely because the request is analytical.
+
+**Fail behavior:** The installed skill activates from prompt similarity alone.
+
+### Activation test B - Explicit Codex invocation
+
+**Prompt:** Use `$quantitative-grounding` to compare these architecture options.
+
+**Pass behavior:** Codex invokes the skill and applies the quantitative decision gate, relevant baselines, and uncertainty.
+
+**Fail behavior:** Codex ignores the explicit invocation or applies unrelated quantitative decoration.
+
+### Activation test C - Persistent prompt is a separate opt-in
+
+**Setup:** An operator deliberately places `SYSTEM_PROMPT.txt` in an agent's system or developer instructions.
+
+**Pass behavior:** The configured agent applies QG-01 persistently while the installable Codex skill metadata still declares `allow_implicit_invocation: false`.
+
+**Fail behavior:** Installing the skill alone is treated as authorization for persistent/default behavior.
+
 ## Test 1 - Ranked companies
 
 **Prompt:** What are the top five companies in this market?

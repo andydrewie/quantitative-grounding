@@ -1,9 +1,9 @@
 # Examples
 
-## On-demand activation
+## Explicit invocation
 
 ```text
-Run QG-01 on this question: Which database architecture should we use for a latency-sensitive agent system?
+Use $quantitative-grounding to answer this question: Which database architecture should we use for a latency-sensitive agent system?
 ```
 
 Expected behavior:
@@ -16,7 +16,7 @@ Expected behavior:
 ## Lite mode
 
 ```text
-Use QG-01/Lite: Is this market large enough to matter?
+Use $quantitative-grounding in QG-01/Lite mode: Is this market large enough to matter?
 ```
 
 Expected behavior: one to three high-value anchors, a relevant baseline, and minimal added length.
@@ -24,7 +24,7 @@ Expected behavior: one to three high-value anchors, a relevant baseline, and min
 ## Standard mode
 
 ```text
-Use QG-01/Standard: Rank the leading companies in this category.
+Use $quantitative-grounding in QG-01/Standard mode: Rank the leading companies in this category.
 ```
 
 Expected behavior: define "leading," provide the underlying values and period, and explain material limitations.
@@ -32,7 +32,7 @@ Expected behavior: define "leading," provide the underlying values and period, a
 ## Deep mode
 
 ```text
-Use QG-01/Deep: What is the probability this technology becomes mainstream within five years?
+Use $quantitative-grounding in QG-01/Deep mode: What is the probability this technology becomes mainstream within five years?
 ```
 
 Expected behavior: base rates where available, a probability range, positive and negative drivers, scenario assumptions, sensitivity analysis, and confidence in the estimate.
@@ -40,7 +40,7 @@ Expected behavior: base rates where available, a probability range, positive and
 ## Correct abstention
 
 ```text
-How many people worldwide privately hold this exact belief?
+Use $quantitative-grounding to answer: How many people worldwide privately hold this exact belief?
 ```
 
 Expected behavior: state that reliable quantification is unavailable, identify possible proxies or required data, and avoid inventing a percentage.

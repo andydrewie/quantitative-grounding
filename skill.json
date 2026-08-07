@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "quantitative-grounding",
   "id": "QG-01",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "status": "stable",
   "description": "Adds the minimum sufficient quantitative structure needed to understand scale, comparison, likelihood, economics, uncertainty, and decision relevance without numerical theater or false precision.",
   "license": "MIT",
@@ -18,8 +18,15 @@
     "evaluations": "EVALS.md"
   },
   "activation": {
-    "default": "substantive-analysis",
-    "on_demand": "Run QG-01 on this question.",
+    "codex": {
+      "implicit": false,
+      "explicit": "$quantitative-grounding"
+    },
+    "persistent_prompt": {
+      "opt_in": true,
+      "entrypoint": "SYSTEM_PROMPT.txt",
+      "default": "substantive-analysis"
+    },
     "modes": ["Lite", "Standard", "Deep"]
   },
   "principles": [

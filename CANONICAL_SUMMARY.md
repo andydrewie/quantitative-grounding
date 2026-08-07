@@ -16,7 +16,7 @@ Done. I have formalized it as:
 
 This is now a genuine **skill specification**, rather than merely a paragraph of prompting. It defines:
 
-- when the behavior should activate;
+- how the Codex skill is explicitly invoked and how persistent prompt deployment differs;
 - when it should remain suppressed;
 - which metrics to select by domain;
 - how evidence, calculations, estimates, and scenarios differ;
@@ -43,9 +43,11 @@ Instead, it becomes:
 
 > "Identify where measurement reveals the structure of the problem, then quantify only to the level the evidence supports."
 
-## Automatic activation
+## Invocation policy
 
-QG-01 activates by default for substantive questions involving:
+The installed Codex skill is explicit-use only. Invoke it with `$quantitative-grounding`; installation does not activate it from prompt similarity alone.
+
+Once explicitly invoked, QG-01 applies most fully to substantive questions involving:
 
 - rankings and comparisons;
 - companies, markets, and industries;
@@ -57,7 +59,7 @@ QG-01 activates by default for substantive questions involving:
 - strategic decisions and opportunity costs;
 - claims such as *large, likely, rare, expensive, dominant, fast, growing,* or *successful*.
 
-It remains light or inactive for:
+Even after invocation, it remains light or qualitative for:
 
 - creative writing;
 - stylistic rewriting;
@@ -117,21 +119,23 @@ For major analytical answers, it may conclude with a compact:
 
 This section is omitted when it would add no real value.
 
-## Activation commands
+## Invocation and deployment commands
 
-### Persistent activation
+### Explicit Codex invocation
+
+> **Use $quantitative-grounding to add relevant baselines and uncertainty to this analysis.**
+
+### Separate persistent prompt deployment
+
+An operator may copy `SYSTEM_PROMPT.txt` into an agent's system or developer instructions when persistent behavior is desired for that configured environment. This opt-in deployment is distinct from the Codex skill's explicit-only policy.
 
 > **Activate QG-01 by default for substantive analytical questions. Quantify only when relevant, decision-useful, and epistemically defensible.**
 
-### On-demand activation
-
-> **Run QG-01 on this question.**
-
 ### Depth modes
 
-- **QG-01/Lite:** One to three quantitative anchors with minimal added length.
-- **QG-01/Standard:** Three to five anchors, comparisons, and uncertainty.
-- **QG-01/Deep:** Scenarios, assumptions, sensitivity analysis, and a Quantitative Frame.
+- **QG-01/Lite:** `Use $quantitative-grounding in QG-01/Lite mode ...` for one to three quantitative anchors with minimal added length.
+- **QG-01/Standard:** `Use $quantitative-grounding in QG-01/Standard mode ...` for three to five anchors, comparisons, and uncertainty.
+- **QG-01/Deep:** `Use $quantitative-grounding in QG-01/Deep mode ...` for scenarios, assumptions, sensitivity analysis, and a Quantitative Frame.
 
 ## Integration with your precision-first behavior
 

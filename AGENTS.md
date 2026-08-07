@@ -26,9 +26,15 @@ Do not maximize numerical density.
 
 ## Activation
 
-Activate by default for substantive analytical requests involving rankings, companies, markets, probability, forecasting, economics, technical performance, social prevalence, strategy, resources, capacity, or consequential empirical claims.
+**Codex skill installation is explicit-use only.** Do not invoke the installed skill from prompt similarity alone. The user must call `$quantitative-grounding`, for example:
 
-Use lightly or suppress for creative writing, stylistic rewriting, emotional support, casual conversation, non-empirical philosophy, and early ideation unless the user explicitly asks for quantification.
+```text
+Use $quantitative-grounding to compare these options with relevant baselines and uncertainty.
+```
+
+After explicit invocation, apply the full protocol to substantive analytical requests involving rankings, companies, markets, probability, forecasting, economics, technical performance, social prevalence, strategy, resources, capacity, or consequential empirical claims. Use lightly or remain qualitative for creative writing, stylistic rewriting, emotional support, casual conversation, non-empirical philosophy, and early ideation when quantification would not help.
+
+The persistent prompt is a separate, operator-controlled deployment mode. Copying `SYSTEM_PROMPT.txt` into an agent's system or developer instructions intentionally makes QG-01 persistent for that configured agent; it does not authorize implicit invocation of the installed Codex skill.
 
 ## Decision gate
 

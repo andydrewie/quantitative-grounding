@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.0.3"
+VERSION = "2.0.0"
 PORTABLE_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 PORTABLE_MANIFEST_FIELDS = {
     "$schema",
@@ -100,6 +100,20 @@ def validate_identity_consistency() -> None:
         fail("skill.json version does not match validator version")
     if manifest.get("id") != "QG-01":
         fail("skill.json must declare id QG-01")
+    expected_activation = {
+        "codex": {
+            "implicit": False,
+            "explicit": "$quantitative-grounding",
+        },
+        "persistent_prompt": {
+            "opt_in": True,
+            "entrypoint": "SYSTEM_PROMPT.txt",
+            "default": "substantive-analysis",
+        },
+        "modes": ["Lite", "Standard", "Deep"],
+    }
+    if manifest.get("activation") != expected_activation:
+        fail("skill.json must distinguish explicit Codex invocation from opt-in persistent prompt deployment")
 
     match = re.match(r"\A---\r?\n(.*?)\r?\n---(?:\r?\n|\Z)", skill, flags=re.DOTALL)
     if not match:
@@ -109,6 +123,8 @@ def validate_identity_consistency() -> None:
         fail("SKILL.md frontmatter must declare name: quantitative-grounding")
     if not re.search(r"^description:\s*.+$", frontmatter, flags=re.MULTILINE):
         fail("SKILL.md frontmatter must declare a description")
+    if "Explicit-invocation only" not in frontmatter or "$quantitative-grounding" not in frontmatter:
+        fail("SKILL.md description must declare explicit $quantitative-grounding invocation")
     for unsupported in ("id", "version", "activation", "aliases"):
         if re.search(rf"^{unsupported}:\s*", frontmatter, flags=re.MULTILINE):
             fail(f"SKILL.md frontmatter must not declare unsupported key: {unsupported}")
@@ -121,6 +137,24 @@ def validate_identity_consistency() -> None:
     plugin_agents = ROOT / "skills/quantitative-grounding/agents/openai.yaml"
     if plugin_agents.read_bytes() != (ROOT / "agents/openai.yaml").read_bytes():
         fail("plugin openai.yaml mirror must be byte-identical to root agents/openai.yaml")
+
+    agents = read_utf8(ROOT / "agents/openai.yaml")
+    if agents.count("allow_implicit_invocation:") != 1:
+        fail("agents/openai.yaml must declare allow_implicit_invocation exactly once")
+    if not re.search(
+        r"(?ms)^policy:\s*$.*?^\s+allow_implicit_invocation:\s*false\s*$",
+        agents,
+    ):
+        fail("agents/openai.yaml must disable implicit invocation")
+
+    readme = read_utf8(ROOT / "README.md")
+    if f"Canonical skill version: **{VERSION}**" not in readme:
+        fail("README.md canonical version does not match validator version")
+    if "Codex activation: explicit only" not in readme:
+        fail("README.md must prominently document explicit-only Codex activation")
+    changelog = read_utf8(ROOT / "CHANGELOG.md")
+    if not re.search(rf"^## {re.escape(VERSION)}\b", changelog, flags=re.MULTILINE):
+        fail("CHANGELOG.md must include the current version")
 
 
 def validate_plugin_manifests() -> None:
@@ -161,6 +195,14 @@ def validate_plugin_manifests() -> None:
     ):
         if field not in interface:
             fail(f"com.openai.interface must contain {field}")
+    default_prompt = interface.get("defaultPrompt")
+    if (
+        not isinstance(default_prompt, list)
+        or len(default_prompt) != 1
+        or not isinstance(default_prompt[0], str)
+        or "$quantitative-grounding" not in default_prompt[0]
+    ):
+        fail("com.openai.interface.defaultPrompt must explicitly invoke $quantitative-grounding")
 
     expected_legacy = {
         key: value
