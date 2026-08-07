@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "quantitative-grounding",
+  "version": "1.0.3",
+  "description": "Add decision-useful quantitative structure for scale, comparison, likelihood, economics, uncertainty, and consequential empirical claims without numerical theater or false precision.",
+  "author": {
+    "name": "Andrew Fai",
+    "url": "https://github.com/andydrewie"
+  },
+  "homepage": "https://github.com/andydrewie/quantitative-grounding",
+  "repository": "https://github.com/andydrewie/quantitative-grounding",
+  "license": "MIT",
+  "keywords": [
+    "analysis",
+    "decision-making",
+    "quantification",
+    "uncertainty"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Quantitative Grounding",
+        "shortDescription": "Add decision-useful quantitative structure",
+        "longDescription": "Ground analytical claims in useful scale, comparison, likelihood, economics, and uncertainty without false precision.",
+        "developerName": "Andrew Fai",
+        "category": "Productivity",
+        "capabilities": [
+          "Write"
+        ],
+        "websiteURL": "https://github.com/andydrewie/quantitative-grounding",
+        "termsOfServiceURL": "https://github.com/andydrewie/quantitative-grounding/blob/main/LICENSE",
+        "defaultPrompt": [
+          "Use quantitative grounding to add decision-useful scale, comparison, and uncertainty to this analysis."
+        ]
+      }
+    }
+  }
+}

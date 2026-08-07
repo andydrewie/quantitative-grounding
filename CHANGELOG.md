@@ -1,7 +1,11 @@
 # Changelog
 
-## Unreleased - Codex metadata compatibility
+## 1.0.3 - Agent Plugins packaging
 
+- Added the Agent Plugins 1.0 root manifest and fixed `skills/quantitative-grounding/` discovery layout.
+- Added a generated Codex legacy manifest for Codex 0.145 compatibility.
+- Preserved the root standalone-skill installation contract for one compatibility release.
+- Kept QG-01 behavior unchanged and added validation for generated-mirror parity.
 - Normalized `SKILL.md` frontmatter to the current Codex `name` and `description` schema.
 - Preserved the QG-01 identifier, version, aliases, and activation behavior in the manifest and skill instructions.
 - Added Codex UI metadata in `agents/openai.yaml`.

@@ -4,11 +4,11 @@ Contributions should improve QG-01 without turning it into a demand for numbers 
 
 ## Before opening a pull request
 
-1. Read `SKILL.md` and `AGENTS.md`.
+1. Read `SKILL.md` and `AGENTS.md`. Treat the root `SKILL.md` as normative; the copy under `skills/quantitative-grounding/` is generated for plugin discovery.
 2. Keep the governing rule intact: relevant, decision-useful, and epistemically defensible.
 3. Add or update behavioral tests in `EVALS.md` for any normative change.
 4. Update `CHANGELOG.md` when behavior or packaging changes.
-5. Run `python scripts/validate.py`.
+5. Keep the generated skill and legacy plugin manifest mirrors synchronized, then run `python scripts/validate.py`.
 
 ## Contribution categories
 

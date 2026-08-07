@@ -5,6 +5,7 @@ This repository defines **QG-01: Quantitative Grounding**, a model-agnostic beha
 ## Source-of-truth precedence
 
 1. `SKILL.md` is normative.
+   `skills/quantitative-grounding/SKILL.md` is its generated plugin-package mirror and must remain byte-identical.
 2. `SYSTEM_PROMPT.txt` is the compact deployment form.
 3. `skill.json` is the machine-readable manifest.
 4. `EVALS.md` defines behavioral validation.

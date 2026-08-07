@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quantitative Grounding"
+  short_description: "Add decision-useful quantitative structure"
+  default_prompt: "Use $quantitative-grounding to add decision-useful quantitative structure and explicit uncertainty to this analysis."
